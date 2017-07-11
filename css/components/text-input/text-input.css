@@ -1,0 +1,48 @@
+.text-input {
+    margin: .7rem 0;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 2.4rem;
+    background-color: #ffffff;
+    border: .3rem solid rgba(255,255,255,0);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    outline: none;
+    transition: border-color .3s ease;
+}
+
+.text-input:focus {
+    border-color: rgba(41,136,121,.41);
+}
+
+.text-input:invalid {
+    border-color: rgba(255,0,0,1);
+}
+
+.text-input::-webkit-input-placeholder {
+    font-style: italic;
+    color: #999999;
+}
+.text-input::-moz-placeholder {
+    font-style: italic;
+    color: #999999;
+}
+.text-input:-ms-input-placeholder {
+    font-style: italic;
+    color: #999999;
+}
+
+.text-input--regular {
+    font-size: 1.4rem;
+    padding: .7rem 1.5rem .4rem 1.5rem;
+    border-radius: .7rem;
+}
+
+.text-input--big {
+    padding: 1.3rem 2rem;
+    border-radius: 1rem;
+}
+
+.label {
+    margin-left: .8rem;
+    font-size: 1.8rem;
+}

@@ -1,0 +1,16 @@
+@import "global/normalize.css";
+
+/* components */
+@import "components/modal/modal.css";
+@import "components/text-input/text-input.css";
+@import "components/button/button.css";
+@import "components/checkbox/checkbox.css";
+@import "components/radio/radio.css";
+@import "components/select/select.css";
+@import "components/range/range.css";
+
+@import "global/global.css";
+@import "pages/login.css";
+@import "pages/main.css";
+@import "pages/product.css";
+@import "pages/manager.css";

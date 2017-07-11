@@ -1,0 +1,37 @@
+.select {
+    display: inline-block;
+}
+
+.select label {
+    position: relative;
+    display: inline-block;
+    padding-right: 3.4rem;
+}
+
+.select label select {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.4rem;
+    color: #ffffff;
+    display: inline-block;
+    padding: .9rem 1.3rem;
+    border: 0;
+    margin: 0;
+    outline: none;
+    background: #2e8879;
+    -webkit-appearance: none;
+    border-radius: .6rem 0 0 .6rem;
+    min-width: 19rem;
+}
+
+.select label::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3.6rem;
+    pointer-events:none;
+    border-radius: 0 .6rem .6rem 0;
+    background: url("../../../images/down.svg") no-repeat 50% 50% #2e8879;
+    background-size: 2.4rem;
+}

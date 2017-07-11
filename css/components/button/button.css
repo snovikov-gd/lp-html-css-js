@@ -1,0 +1,33 @@
+.button {
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-weight: bold;
+    font-size: 1.8rem;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: .5rem;
+    text-align: center;
+}
+
+.button--regular {
+    padding: 1rem 2rem .9rem 2rem;
+    min-width: 12rem;
+    font-weight: normal;
+    font-size: 1.4rem;
+}
+
+.button--big {
+    padding: 1.6rem 2rem 1.5rem 2rem;
+    min-width: 17rem;
+}
+
+.button--primary {
+    background: linear-gradient(to bottom, #2ec7cd 0%,#2bbabc 24%,#209285 76%,#1c8673 100%);
+}
+
+.button--primary:active,
+.button--primary.button--active {
+    background: linear-gradient(to bottom, #1b8471 0%,#21968c 33%,#2bbabc 78%,#2ec6cc 100%);
+}

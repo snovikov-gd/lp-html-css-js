@@ -1,0 +1,15 @@
+.manager {
+    font-size: 0;
+}
+
+.manager__column {
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+
+@media screen and (max-width: 800px) {
+    .manager__column {
+        width: 100%;
+    }
+}

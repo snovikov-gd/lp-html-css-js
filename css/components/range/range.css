@@ -1,0 +1,38 @@
+.range {
+    position: relative;
+    padding: .4rem 0 2rem .8rem;
+}
+
+.range-value {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    font-size: 1.2rem;
+    text-indent: -.7rem;
+    text-align: center;
+}
+
+.range-value--single {
+    text-indent: 0;
+}
+
+.range .ui-widget.ui-widget-content,
+.range .ui-slider-horizontal .ui-slider-range {
+    border: 0;
+    border-radius: 0;
+    background: linear-gradient(#a9a9a9 50%, transparent 50%) repeat-x 0 .5rem;
+    background-size: 100% .4rem;
+}
+
+.range .ui-slider-horizontal .ui-slider-range {
+    background: linear-gradient(#2e8879 50%, transparent 50%) repeat-x 0 .5rem;
+    background-size: 100% .4rem;
+}
+
+.range .ui-slider-handle {
+    cursor: pointer;
+    border-radius: 50%;
+    border: 0;
+    background-color: #2e8879;
+    outline: none;
+}

@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>HTML/CSS Course &mdash; Final Task</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="test">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium debitis dolorum, ea eaque error est eveniet molestias mollitia nam odio officiis recusandae reprehenderit sunt ullam velit? Adipisci alias beatae commodi cumque cupiditate deserunt est excepturi hic incidunt iste labore libero mollitia pariatur, provident rem sit soluta suscipit temporibus totam veritatis! Amet autem delectus deleniti ea, eaque est illo, ipsam iure minus neque nihil obcaecati pariatur quae quaerat quis tempora voluptas? Itaque sapiente, voluptates? Ad delectus deleniti dicta dolores exercitationem expedita quasi reiciendis soluta sunt! A aut blanditiis consectetur cum debitis doloremque ea earum, excepturi, facilis hic, necessitatibus nisi officia ratione rem temporibus totam ut vel veniam voluptas voluptatem. Accusamus ad adipisci aliquam libero maiores modi, odio quia quis quod reiciendis sed similique temporibus vel vero voluptates. Mollitia nesciunt rem similique soluta vero. Illum sapiente, vero? Ab aliquam enim necessitatibus possimus? Animi debitis excepturi perferendis ratione. Accusamus alias assumenda consequuntur, dolorum ducimus earum ex fugit illum incidunt iusto maiores mollitia perferendis quod sint suscipit tempora totam ut, vel velit voluptas. A ab autem corporis cum dolores fuga hic id minus nisi, omnis possimus qui repellat rerum saepe sequi similique sint sit temporibus veniam voluptatibus. Fugiat incidunt labore nostrum pariatur quo ratione.
+</div>
+
+    <main class="main main--modal-opened">
+        <div class="modal-overlay"></div>
+    </main>
+
+    <div class="modal modal--opened modal--login">
+        <div class="modal-window modal-window--login">
+            <header class="modal__header">
+                Login to "Demo Shop"
+            </header>
+
+            <div class="modal__content">
+                <div class="login">
+                    <form action="">
+                        <div class="row">
+                            <label for="login" class="label">Your Login:</label><br>
+                            <input pattern="[A-Za-z]{6,}" id="login" type="text" value="" class="text-input text-input--big text-input--login">
+                        </div>
+
+                        <div class="row">
+                            <label for="password" class="label">Your Password:</label><br>
+                            <input pattern="[A-Za-z]{6,}" id="password" type="password" value="" class="text-input text-input--big text-input--password">
+                        </div>
+
+                        <nav class="nav">
+                            <button class="button button--big button--primary">Submit</button>
+                        </nav>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.button--primary').addEventListener('click', (e) => {
+            e.preventDefault()
+        });
+    </script>
+</body>
+</html>

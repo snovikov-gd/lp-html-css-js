@@ -1,0 +1,336 @@
+<html>
+<head>
+    <title>HTML/CSS Course &mdash; Final Task</title>
+
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="lib/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+    <script src="lib/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
+</head>
+
+<body>
+    <main class="main">
+        <header class="header">
+            <div class="header-container">
+                <a href="#"><img src="images/logo.svg" width="32" height="32" alt="" class="header__logo"></a>
+
+                <div class="header__user">
+                    Hello, <em>John_Doe</em>
+                </div>
+
+                <a href="#" class="header__logout"><img src="images/header-logout.svg" width="20" height="20" alt=""></a>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="content-container">
+                <div class="filters">
+                    <div class="filter__options">
+                        <button class="button button--regular button--primary toggle-filters">Filter options</button>
+
+                        <div class="filter__panel">
+                            <div class="filter__panel__row">
+                                <div class="filter">
+                                    <div class="filter__title">Availability:</div>
+                                    <div class="filter__input">
+                                        <div class="checkbox">
+                                            <input type="checkbox" id="availability">
+                                            <label for="availability">Available only</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="filter">
+                                    <div class="filter__title">Gender:</div>
+                                    <div class="filter__input">
+                                        <div class="radio">
+                                            <input type="radio" id="man" name="gender" checked>
+                                            <label for="man">Man</label>
+                                        </div>
+
+                                        <div class="radio">
+                                            <input type="radio" id="woman" name="gender">
+                                            <label for="woman">Woman</label>
+                                        </div>
+
+                                        <div class="radio">
+                                            <input type="radio" id="unisex" name="gender">
+                                            <label for="unisex">Unisex</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="filter">
+                                    <div class="filter__title">Category:</div>
+
+                                    <div class="filter__input">
+                                        <div class="select">
+                                            <label>
+                                                <select>
+                                                    <option>Active wear</option>
+                                                    <option>Dresses</option>
+                                                    <option>Jeans</option>
+                                                    <option>Boats</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="filter__panel__row">
+                                <div class="filter filter--range">
+                                    <div class="filter__title">Rating:</div>
+                                    <div class="filter__input">
+                                        <div class="range">
+                                            <div class="range-value range-value--single" id="slider-rating-left"></div>
+                                            <div class="range-value range-value--single" id="slider-rating-right"></div>
+
+                                            <div id="slider-range"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="filter" style="width: 65%;">
+                                    <div class="filter__title">Price:</div>
+                                    <div class="filter__input">
+                                        <div class="range">
+                                            <div class="range-value" id="slider-price-left"></div>
+                                            <div class="range-value" id="slider-price-right"></div>
+
+                                            <div id="slider-price"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filters__text">
+                        <input type="text" class="text-input text-input--regular text-input--search" placeholder="Filter by text...">
+                    </div>
+                </div>
+
+                <div class="products-list">
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="images/p1.jpg" width="100%" alt="">
+                            
+                            <div class="product-card__rating">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                            </div>
+                        </div>
+
+                        <div class="product-card__description">
+                            <div class="product-card__title">Active Coat Lorem 1</div>
+
+                            <div class="product-card__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Adipisci aperiam, libero aliquid architecto ad quis
+                                maiores sit nulla officiis ex velit sapiente autem fugit
+                                quam, qui reprehenderit veniam.
+                            </div>
+                        </div>
+
+                        <nav class="product-card__nav">
+                            <div class="product-card__price">
+                                <span class="product-card__currency">$</span><span class="product-card__value">47.95</span>
+                            </div>
+
+                            <a href="#" class="button button--regular button--primary">Show more</a>
+                        </nav>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="images/p2.jpg" width="100%" alt="">
+
+                            <div class="product-card__rating">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                            </div>
+                        </div>
+
+                        <div class="product-card__description">
+                            <div class="product-card__title">Active Coat Lorem 2</div>
+
+                            <div class="product-card__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Adipisci aperiam, libero aliquid architecto ad quis
+                                maiores sit nulla officiis.
+                            </div>
+                        </div>
+
+                        <nav class="product-card__nav">
+                            <div class="product-card__price">
+                                <span class="product-card__currency">$</span><span class="product-card__value">55.75</span>
+                            </div>
+
+                            <a href="#" class="button button--regular button--primary">Show more</a>
+                        </nav>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="images/p3.jpg" width="100%" alt="">
+
+                            <div class="product-card__rating">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                            </div>
+                        </div>
+
+                        <div class="product-card__description">
+                            <div class="product-card__title">Active Coat Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit.3</div>
+
+                            <div class="product-card__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Adipisci aperiam, libero aliquid architecto ad quis
+                                maiores sit nulla officiis ex velit sapiente autem fugit
+                                quam, qui reprehenderit veniam.
+                            </div>
+                        </div>
+
+                        <nav class="product-card__nav">
+                            <div class="product-card__price">
+                                <span class="product-card__currency">$</span><span class="product-card__value">127.95</span>
+                            </div>
+
+                            <a href="#" class="button button--regular button--primary">Show more</a>
+                        </nav>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="images/p4.jpg" width="100%" alt="">
+
+                            <div class="product-card__rating">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                            </div>
+                        </div>
+
+                        <div class="product-card__description">
+                            <div class="product-card__title">Active Coat Lorem 1</div>
+
+                            <div class="product-card__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Adipisci aperiam, libero aliquid architecto ad quis
+                                maiores sit nulla officiis ex velit sapiente autem fugit
+                                quam, qui reprehenderit veniam.
+                            </div>
+                        </div>
+
+                        <nav class="product-card__nav">
+                            <div class="product-card__price">
+                                <span class="product-card__currency">$</span><span class="product-card__value">32.15</span>
+                            </div>
+
+                            <a href="#" class="button button--regular button--primary">Show more</a>
+                        </nav>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="images/p5.jpg" width="100%" alt="">
+
+                            <div class="product-card__rating">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                            </div>
+                        </div>
+
+                        <div class="product-card__description">
+                            <div class="product-card__title">Active Coat Lorem 2</div>
+
+                            <div class="product-card__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Adipisci aperiam, libero aliquid architecto ad quis
+                                maiores sit nulla officiis.
+                            </div>
+                        </div>
+
+                        <nav class="product-card__nav">
+                            <div class="product-card__price">
+                                <span class="product-card__currency">$</span><span class="product-card__value">7800.00</span>
+                            </div>
+
+                            <a href="#" class="button button--regular button--primary">Show more</a>
+                        </nav>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-card__image">
+                            <img src="images/p6.jpg" width="100%" alt="">
+
+                            <div class="product-card__rating">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-active.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                                <img src="images/star-inactive.svg" width="19" height="19" alt="">
+                            </div>
+                        </div>
+
+                        <div class="product-card__description">
+                            <div class="product-card__title">Active Coat Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit.3</div>
+
+                            <div class="product-card__text">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing
+                                elit. Adipisci aperiam, libero aliquid architecto ad quis
+                                maiores sit nulla officiis ex velit sapiente autem fugit
+                                quam, qui reprehenderit veniam.
+                            </div>
+                        </div>
+
+                        <nav class="product-card__nav">
+                            <div class="product-card__price">
+                                <span class="product-card__currency">$</span><span class="product-card__value">123.90</span>
+                            </div>
+
+                            <a href="#" class="button button--regular button--primary">Show more</a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            Copyright "<a href="">Demo Shop</a>", 2017
+        </footer>
+    </main>
+
+    <script>
+        let filterPanel = document.querySelector('.filter__panel'),
+            filterButton = document.querySelector('.toggle-filters');
+
+        filterButton.addEventListener('click', e => {
+            e.preventDefault();
+            filterButton.classList.toggle('button--active');
+            filterPanel.classList.toggle('filter__panel--active');
+        });
+    </script>
+    <script src="js/init-slider.js"></script>
+</body>
+</html>
