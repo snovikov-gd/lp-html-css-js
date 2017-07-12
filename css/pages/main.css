@@ -131,3 +131,46 @@
 .product-card__currency {
     color: #288575;
 }
+
+@media screen and (max-width: 800px) {
+    .filter__options {
+        margin-right: auto;
+    }
+
+    .filter__panel {
+        left: 1rem;
+        right: auto;
+        width: calc(100% - 2rem);
+        border-radius: 1.5rem;
+    }
+
+    .filter__panel::before {
+        left: 6rem;
+        right: auto;
+    }
+
+    .filter__panel__row {
+        display: block;
+        width: 100%;
+    }
+
+    .filter {
+        display: block;
+        width: 100% !important;
+        padding: 2rem 0;
+        border-bottom: .1rem solid #2e8879;
+    }
+
+    .filter__panel .filter__panel__row:first-child .filter:first-child {
+        padding-top: 0;
+    }
+
+    .filter__panel .filter__panel__row:last-child .filter:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    hr {
+        display: none;
+    }
+}

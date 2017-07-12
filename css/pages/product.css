@@ -97,7 +97,7 @@
 
 .modal--delete .modal-window,
 .modal--buy .modal-window,
-.modal--edit .modal-window{
+.modal--edit .modal-window {
     width: 73rem;
 }
 
@@ -172,5 +172,21 @@
     .product__nav {
         left: 2rem;
         width: calc(100% - 4rem);
+    }
+
+    .modal--delete .modal-window,
+    .modal--buy .modal-window,
+    .modal--edit .modal-window {
+        width: 100%;
+    }
+
+    .edit-product__column {
+        float: none;
+        width: 100%;
+    }
+
+    .edit-product__column:first-child,
+    .edit-product__column:last-child {
+        padding: 0;
     }
 }
