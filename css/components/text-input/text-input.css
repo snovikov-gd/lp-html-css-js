@@ -22,10 +22,12 @@
     font-style: italic;
     color: #999999;
 }
+
 .text-input::-moz-placeholder {
     font-style: italic;
     color: #999999;
 }
+
 .text-input:-ms-input-placeholder {
     font-style: italic;
     color: #999999;
@@ -33,7 +35,7 @@
 
 .text-input--regular {
     font-size: 1.4rem;
-    padding: .7rem 1.5rem .4rem 1.5rem;
+    padding: .7rem 1.5rem .6rem 1.5rem;
     border-radius: .7rem;
 }
 

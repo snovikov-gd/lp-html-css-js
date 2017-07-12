@@ -95,6 +95,69 @@
     margin-top: 1.5rem;
 }
 
+.modal--delete .modal-window,
+.modal--buy .modal-window,
+.modal--edit .modal-window{
+    width: 73rem;
+}
+
+.modal--delete .modal__header,
+.modal--buy .modal__header,
+.modal--edit .modal__header {
+    text-align: left;
+}
+
+/* admin edit product modal */
+.edit-product {
+    overflow: hidden;
+}
+
+.edit-product__column {
+    float: left;
+    width: 50%;
+}
+
+.edit-product__column:first-child {
+    padding-right: 1.3rem;
+}
+
+.edit-product__column:last-child {
+    padding-left: 1.3rem;
+}
+
+.edit-product__item {
+    margin: 1.8rem 0;
+    font-size: 1.6rem;
+}
+
+.edit-product__label {
+    display: block;
+    margin-bottom: .3rem;
+}
+
+.edit-product__item .text-input {
+    width: 100%;
+    margin: 0;
+}
+
+.edit-product__item .select {
+    width: 100%;
+}
+
+.edit-product__item .textarea {
+    width: 100%;
+    height: 21.5rem;
+}
+
+.edit-product__item label,
+.edit-product__item select {
+    width: 100%;
+}
+
+.edit-product__image {
+    border: 1px solid #fff;
+}
+
 @media screen and (max-width: 800px) {
     .product-image {
         float: none;

@@ -59,7 +59,7 @@
                     </div>
 
                     <div class="product__admin">
-                        You can <a href="#">add 5 more</a>. You can also <a href="#">edit</a> details or <a href="#">delete</a> them.
+                        You can <a href="#">add 5 more</a>. You can also <a href="#" id="edit">edit</a> details or <a href="#" id="delete">delete</a> them.
                     </div>
 
                     <nav class="product__nav">
@@ -68,7 +68,7 @@
                             <span class="product__left">9 items left</span>
                         </div>
 
-                        <a href="#" class="button button--regular button--primary">Buy</a>
+                        <a href="#" class="button button--regular button--primary" id="buy">Buy</a>
                     </nav>
                 </div>
             </div>
@@ -78,6 +78,180 @@
     <footer class="footer">
         Copyright "<a href="">Demo Shop</a>", 2017
     </footer>
+
+    <div class="modal-overlay"></div>
 </main>
+
+<div class="modal modal--delete" id="modal-delete">
+    <div class="modal-window">
+        <header class="modal__header">
+            Are you sure?
+        </header>
+
+        <div class="modal__content">
+            <div class="modal-message">
+                You are trying to delete this product.<br>
+                Are you sure you want this?
+            </div>
+
+            <nav class="modal__nav">
+                <button class="button button--big button--secondary button--close-modal">Cancel</button>
+                <button class="button button--big button--primary button--close-modal">Submit</button>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal--buy" id="modal-buy">
+    <div class="modal-window">
+        <header class="modal__header">
+            Thank you!
+        </header>
+
+        <div class="modal__content">
+            <div class="modal-message">
+                You successfully purchased this item.
+            </div>
+
+            <nav class="modal__nav">
+                <button class="button button--big button--primary button--close-modal">Continue shopping</button>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal--edit" id="modal-edit">
+    <div class="modal-window">
+        <header class="modal__header">
+            Edit “Active Coat Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab animi eius eum laborum nesciunt. Consequuntur eligendi impedit nam necessitatibus nobis non, perferendis reprehenderit sed velit voluptatibus! Eveniet labore neque nostrum."
+        </header>
+
+        <div class="modal__content">
+            <div class="edit-product">
+                <div class="edit-product__column">
+                    <div class="edit-product__item">
+                        <label class="edit-product__label" for="admin-name">Name:</label>
+                        <input type="text" class="text-input text-input--regular" placeholder="Please enter name..." id="admin-name">
+                    </div>
+
+                    <div class="edit-product__item">
+                        <label for="admin-category" class="edit-product__label">Category:</label>
+
+                        <div class="select select--white">
+                            <label>
+                                <select id="admin-category">
+                                    <option>Active wear</option>
+                                    <option>Dresses</option>
+                                    <option>Jeans</option>
+                                    <option>Boats</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="edit-product__item">
+                        <label class="edit-product__label">Gender:</label>
+
+                        <div class="radio-group">
+                            <div class="radio">
+                                <input type="radio" id="man" name="gender" checked>
+                                <label for="man">Man</label>
+                            </div>
+
+                            <div class="radio">
+                                <input type="radio" id="woman" name="gender">
+                                <label for="woman">Woman</label>
+                            </div>
+
+                            <div class="radio">
+                                <input type="radio" id="unisex" name="gender">
+                                <label for="unisex">Unisex</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="edit-product__item">
+                        <label for="admin-description" class="edit-product__label">Description:</label>
+
+                        <textarea id="admin-description" class="textarea"></textarea>
+                    </div>
+                </div>
+
+                <div class="edit-product__column">
+                    <div class="edit-product__item">
+                        <label class="edit-product__label" for="admin-url">Link to image:</label>
+                        <input type="url" class="text-input text-input--regular" placeholder="Please enter link to image..." id="admin-url">
+                    </div>
+
+                    <div class="edit-product__item">
+                        <img src="images/edit.jpg" width="100%" class="edit-product__image" alt="">
+                    </div>
+
+                    <div class="edit-product__item">
+                        <label class="edit-product__label" for="admin-price">Price:</label>
+                        <input type="number" class="text-input text-input--regular" placeholder="Please enter price..." id="admin-price">
+                    </div>
+
+                    <div class="edit-product__item">
+                        <label for="admin-rating" class="edit-product__label">Rating:</label>
+
+                        <div class="select select--white">
+                            <label>
+                                <select id="admin-rating">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option selected>5</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="modal__nav">
+                <button class="button button--big button--secondary button--close-modal">Cancel</button>
+                <button class="button button--big button--primary button--close-modal">Submit</button>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<script>
+    let main = document.querySelector('main');
+
+    document.querySelector('#delete')
+        .addEventListener('click', e => openModal(e, document.querySelector('#modal-delete')));
+
+    document.querySelector('#buy')
+        .addEventListener('click', e => openModal(e, document.querySelector('#modal-buy')));
+
+    document.querySelector('#edit')
+        .addEventListener('click', e => openModal(e, document.querySelector('#modal-edit')));
+
+    let closeModalButtons = document.querySelectorAll('.button--close-modal');
+
+    for (let i = 0; i < closeModalButtons.length; i++) {
+        closeModalButtons[i].addEventListener('click', function (e) {
+            closeModal(e);
+        });
+    }
+
+    function openModal(e, modal) {
+        e.preventDefault();
+        main.classList.add('main--modal-opened');
+        modal.classList.add('modal--opened');
+    }
+
+    function closeModal(e, modal) {
+        e.preventDefault();
+        main.classList.remove('main--modal-opened');
+
+        document.querySelector('#modal-delete').classList.remove('modal--opened');
+        document.querySelector('#modal-buy').classList.remove('modal--opened');
+        document.querySelector('#modal-edit').classList.remove('modal--opened');
+    }
+</script>
 </body>
 </html>

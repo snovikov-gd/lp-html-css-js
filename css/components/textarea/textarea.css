@@ -1,0 +1,33 @@
+.textarea {
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.4rem;
+    background-color: #ffffff;
+    border: .3rem solid rgba(255,255,255,0);
+    border-radius: .5rem;
+    padding: 1rem;
+    outline: none;
+    transition: border-color .3s ease;
+}
+
+.textarea:focus {
+    border-color: rgba(41,136,121,.41);
+}
+
+.textarea:invalid {
+    border-color: rgba(255,0,0,1);
+}
+
+.textarea::-webkit-input-placeholder {
+    font-style: italic;
+    color: #999999;
+}
+
+.textarea::-moz-placeholder {
+    font-style: italic;
+    color: #999999;
+}
+
+.textarea:-ms-input-placeholder {
+    font-style: italic;
+    color: #999999;
+}

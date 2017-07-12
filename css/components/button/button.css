@@ -11,6 +11,10 @@
     text-align: center;
 }
 
+.button:disabled {
+    opacity: .5;
+}
+
 .button--regular {
     padding: 1rem 2rem .9rem 2rem;
     min-width: 12rem;
@@ -30,4 +34,13 @@
 .button--primary:active,
 .button--primary.button--active {
     background: linear-gradient(to bottom, #1b8471 0%,#21968c 33%,#2bbabc 78%,#2ec6cc 100%);
+}
+
+.button--secondary {
+    background: linear-gradient(to bottom, #b1b1b0 0%,#a6a6a6 24%,#838383 73%,#777777 100%);
+}
+
+.button--secondary:active,
+.button--secondary.button--active {
+    background: linear-gradient(to bottom, #767676 0%,#7e7e7e 20%,#a6a6a6 78%,#b0b0b0 100%);
 }

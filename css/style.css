@@ -8,6 +8,7 @@
 @import "components/radio/radio.css";
 @import "components/select/select.css";
 @import "components/range/range.css";
+@import "components/textarea/textarea.css";
 
 @import "global/global.css";
 @import "pages/login.css";

@@ -35,3 +35,13 @@
     background: url("../../../images/down.svg") no-repeat 50% 50% #2e8879;
     background-size: 2.4rem;
 }
+
+.select--white label select {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.select--white label::after {
+    background: url("../../../images/down2.svg") no-repeat 50% 50% #fff;
+    background-size: 2.4rem;
+}
