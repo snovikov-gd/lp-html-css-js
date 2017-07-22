@@ -1,0 +1,37 @@
+.image-slider {
+    position: relative;
+}
+
+.image-slider__image {
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*top: 0;*/
+    /*width: 100%;*/
+    opacity: 0;
+    display: none;
+}
+
+.image-slider__image--active {
+    opacity: 1;
+    display: block;
+}
+
+.image-slider__arrow {
+    cursor: pointer;
+    position: absolute;
+    top: calc(50% - 2.5rem);
+    width: 6.4rem;
+    height: 6.4rem;
+    background: url("../../../images/arrow-left.svg") no-repeat;
+    background-size: 5rem;
+}
+
+.image-slider__arrow--left {
+    left: 1rem;
+}
+
+.image-slider__arrow--right {
+    right: 1rem;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}

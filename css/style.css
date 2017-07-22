@@ -9,6 +9,7 @@
 @import "components/select/select.css";
 @import "components/range/range.css";
 @import "components/textarea/textarea.css";
+@import "components/image-slider/image-slider.css";
 
 @import "global/global.css";
 @import "pages/login.css";

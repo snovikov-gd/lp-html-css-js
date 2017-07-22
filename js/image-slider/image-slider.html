@@ -1,0 +1,57 @@
+<template id="image-slider">
+    <style>
+        main {
+            position: relative;
+        }
+
+        .arrow {
+            cursor: pointer;
+            position: absolute;
+            top: calc(50% - 2.5rem);
+            width: 6.4rem;
+            height: 6.4rem;
+            background: url("images/arrow.svg") no-repeat;
+            background-size: 5rem;
+            z-index: 200;
+        }
+
+        .arrow.disabled {
+            cursor: default;
+            opacity: .5;
+        }
+
+        .arrow--left {
+            left: 1rem;
+        }
+
+        .arrow--right {
+            right: 1rem;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+
+        ::slotted(img) {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: .5;
+            z-index: 50;
+            transition: opacity 1s ease;
+        }
+
+        ::slotted(img.active) {
+            opacity: 1;
+            position: relative;
+            z-index: 100;
+        }
+    </style>
+
+    <main>
+        <slot name="image"></slot>
+
+        <div class="arrow arrow--left"></div>
+        <div class="arrow arrow--right"></div>
+    </main>
+</template>
+
+<script src="./image-slider.js"></script>
