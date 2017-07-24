@@ -4,10 +4,6 @@
             position: relative;
         }
 
-        main.zoomed {
-            cursor: crosshair;
-        }
-
         .arrow {
             cursor: pointer;
             position: absolute;
@@ -33,6 +29,36 @@
             right: 1rem;
             -webkit-transform: scaleX(-1);
             transform: scaleX(-1);
+        }
+
+        .image-title {
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            padding: 20px 0 45px 0;
+            color: #ffffff;
+            font-style: italic;
+            text-align: center;
+            z-index: 250;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: none;
+        }
+
+        .image-title.sliding-left,
+        .image-title.sliding-right {
+            transition: .5s;
+            opacity: 0;
+        }
+
+        .image-title.sliding-left {
+            text-indent: 200%;
+        }
+
+        .image-title.sliding-right {
+            text-indent: -200%;
         }
 
         .zoom-area {
@@ -80,6 +106,7 @@
 
     <main>
         <slot name="image"></slot>
+        <div class="image-title">asdfasdffd</div>
 
         <div class="arrow arrow--left"></div>
         <div class="arrow arrow--right"></div>

@@ -28,6 +28,7 @@ class ImageSlider extends HTMLElement {
 
         if (slideLeft && this.activeImage > 0) {
             this.activeImage--;
+            this._slideImageTitle(this.images[this.activeImage].alt, 'left');
             this.arrowRight.classList.remove('disabled');
 
             if (this.activeImage === 0) {
@@ -37,6 +38,7 @@ class ImageSlider extends HTMLElement {
 
         if (slideRight && this.activeImage < this.images.length - 1) {
             this.activeImage++;
+            this._slideImageTitle(this.images[this.activeImage].alt, 'right');
             this.arrowLeft.classList.remove('disabled');
 
             if (this.activeImage === this.images.length - 1) {
@@ -51,6 +53,23 @@ class ImageSlider extends HTMLElement {
         this.images = this.shadowRoot.querySelector('[name="image"]').assignedNodes();
         this.activeImage = 0;
         this.images[this.activeImage].classList.add('active');
+        this._setImageTitle(this.images[this.activeImage].alt);
+    }
+
+    _setImageTitle(title) {
+        const imageTitle = this.shadowRoot.querySelector(`.image-title`);
+        imageTitle.firstChild.textContent = title;
+    }
+
+    _slideImageTitle(title, direction) {
+        const imageTitle = this.shadowRoot.querySelector(`.image-title`);
+
+        imageTitle.classList.add(`sliding-${direction}`);
+
+        setTimeout(() => {
+            imageTitle.classList.remove(`sliding-${direction}`);
+            imageTitle.firstChild.textContent = title;
+        }, 500)
     }
 
     _initializeArrows() {
