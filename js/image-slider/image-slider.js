@@ -15,20 +15,9 @@ class ImageSlider extends HTMLElement {
     }
 
     initialize() {
-        // initialize images
-        this.images = this.shadowRoot.querySelector('[name="image"]').assignedNodes();
-        this.activeImage = 0;
-        this.images[this.activeImage].classList.add('active');
-
-        // initialize arrow navigation
-        this.arrowLeft = this.shadowRoot.querySelector(`.${this.arrowLeftSelector}`);
-        this.arrowRight = this.shadowRoot.querySelector(`.${this.arrowRightSelector}`);
-
-        const arrows = [this.arrowLeft, this.arrowRight];
-
-        Object.keys(arrows).forEach(arrow => {
-            arrows[arrow].addEventListener('click', this.slide.bind(this));
-        });
+        this._initializeImages();
+        this._initializeArrows();
+        this._initializeZoom();
     }
 
     slide(event) {
@@ -39,6 +28,7 @@ class ImageSlider extends HTMLElement {
 
         if (slideLeft && this.activeImage > 0) {
             this.activeImage--;
+            this.arrowRight.classList.remove('disabled');
 
             if (this.activeImage === 0) {
                 this.arrowLeft.classList.add('disabled');
@@ -47,6 +37,7 @@ class ImageSlider extends HTMLElement {
 
         if (slideRight && this.activeImage < this.images.length - 1) {
             this.activeImage++;
+            this.arrowLeft.classList.remove('disabled');
 
             if (this.activeImage === this.images.length - 1) {
                 this.arrowRight.classList.add('disabled');
@@ -54,6 +45,78 @@ class ImageSlider extends HTMLElement {
         }
 
         this.images[this.activeImage].classList.add('active');
+    }
+
+    _initializeImages() {
+        this.images = this.shadowRoot.querySelector('[name="image"]').assignedNodes();
+        this.activeImage = 0;
+        this.images[this.activeImage].classList.add('active');
+    }
+
+    _initializeArrows() {
+        const main = this.shadowRoot.querySelector('main');
+        this.arrowLeft = this.shadowRoot.querySelector(`.${this.arrowLeftSelector}`);
+        this.arrowLeft.classList.add('disabled');
+        this.arrowRight = this.shadowRoot.querySelector(`.${this.arrowRightSelector}`);
+
+        const arrows = [this.arrowLeft, this.arrowRight];
+
+        Object.keys(arrows).forEach(arrow => {
+            arrows[arrow].addEventListener('click', this.slide.bind(this));
+        });
+    }
+
+    _initializeZoom() {
+        const main = this.shadowRoot.querySelector('main');
+
+        this._setZoomedImageAreaSize();
+
+        main.addEventListener('mousemove', e => {
+            const main = this.shadowRoot.querySelector('main'),
+                  zoomArea = this.shadowRoot.querySelector('.zoom-area'),
+                  zoomedImageArea = this.shadowRoot.querySelector('.zoomed-image-area'),
+                  leftBorder = main.clientWidth/4/2,
+                  topBorder = main.clientHeight/2/2,
+                  rightBorder = main.clientWidth - leftBorder,
+                  bottomBorder = main.clientHeight - topBorder;
+
+            if (e.layerX > leftBorder && e.layerY > topBorder && e.layerX < rightBorder && e.layerY < bottomBorder) {
+                zoomedImageArea.style.backgroundImage = `url("${this.images[this.activeImage].src}")`;
+
+                zoomedImageArea.style.display = 'block';
+                zoomArea.style.opacity = '1';
+
+                this._setZoomAreaPosition(e.layerX, e.layerY);
+                this._updateZoomedImagePosition(e.layerX, e.layerY, leftBorder, topBorder);
+            } else {
+                zoomedImageArea.style.display = 'none';
+                zoomArea.style.opacity = '0';
+            }
+        });
+    }
+
+    _setZoomedImageAreaSize() {
+        const activeImage = this.images[this.activeImage],
+            zoomedImageArea = this.shadowRoot.querySelector('.zoomed-image-area');
+
+        zoomedImageArea.style.width = activeImage.naturalWidth/4;
+        zoomedImageArea.style.height = activeImage.naturalHeight/2;
+    }
+
+    _setZoomAreaPosition(offsetLeft, offsetTop) {
+        const main = this.shadowRoot.querySelector('main'),
+              zoomArea = this.shadowRoot.querySelector('.zoom-area');
+
+        zoomArea.style.left = `${offsetLeft-zoomArea.clientWidth/2}px`;
+        zoomArea.style.top = `${offsetTop-zoomArea.clientHeight/2}px`;
+    }
+
+    _updateZoomedImagePosition(offsetLeft, offsetTop, leftBorder, topBorder) {
+        const zoomedImageArea = this.shadowRoot.querySelector('.zoomed-image-area'),
+              ratio = this.images[this.activeImage].naturalWidth/this.images[this.activeImage].width;
+
+        zoomedImageArea.style.backgroundPositionX = `-${(offsetLeft-leftBorder)*ratio}px`;
+        zoomedImageArea.style.backgroundPositionY = `-${(offsetTop-topBorder)*ratio}px`;
     }
 }
 

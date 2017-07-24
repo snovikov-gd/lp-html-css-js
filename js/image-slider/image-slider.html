@@ -4,6 +4,10 @@
             position: relative;
         }
 
+        main.zoomed {
+            cursor: crosshair;
+        }
+
         .arrow {
             cursor: pointer;
             position: absolute;
@@ -17,6 +21,7 @@
 
         .arrow.disabled {
             cursor: default;
+            pointer-events: none;
             opacity: .5;
         }
 
@@ -28,6 +33,33 @@
             right: 1rem;
             -webkit-transform: scaleX(-1);
             transform: scaleX(-1);
+        }
+
+        .zoom-area {
+            opacity: 0;
+            transition: opacity .3s ease;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25%;
+            height: 50%;
+            border: 2px solid #ffcc00;
+            background-color: rgba(255, 255, 255, .6);
+            z-index: 300;
+            pointer-events: none;
+        }
+
+        .zoomed-image-area {
+            display: none;
+            position: absolute;
+            left: calc(100% + 10px);
+            top: 0;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #ffcc00;
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+            z-index: 100;
         }
 
         ::slotted(img) {
@@ -51,6 +83,9 @@
 
         <div class="arrow arrow--left"></div>
         <div class="arrow arrow--right"></div>
+
+        <div class="zoom-area"></div>
+        <div class="zoomed-image-area"></div>
     </main>
 </template>
 
