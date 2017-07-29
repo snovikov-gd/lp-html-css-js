@@ -2,6 +2,7 @@
     <style>
         main {
             position: relative;
+            background-color: #111;
         }
 
         .arrow {
@@ -89,6 +90,7 @@
         }
 
         ::slotted(img) {
+            display: none;
             position: absolute;
             left: 0;
             top: 0;
@@ -102,6 +104,11 @@
             position: relative;
             z-index: 100;
         }
+
+        .watermarked-image {
+            display: block;
+            transition: opacity .2s ease;
+        }
     </style>
 
     <main>
@@ -113,6 +120,8 @@
 
         <div class="zoom-area"></div>
         <div class="zoomed-image-area"></div>
+
+        <canvas class="watermarked-image" width="540" height="360"></canvas>
     </main>
 </template>
 
