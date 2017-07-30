@@ -1,10 +1,261 @@
 <template id="add-review">
-    <style>
+    <link rel="stylesheet" href="css/components/button/button.css">
 
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        /* preview */
+        .preview {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, .7);
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .preview nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .preview-by {
+            margin-right: auto;
+        }
+
+        .preview-name {
+            font-style: italic;
+            color: #ffcc00;
+        }
+
+        .preview main {
+            overflow: hidden;
+        }
+
+        .preview-avatar {
+            float: left;
+            margin-right: 30px;
+            font-size: 0;
+            border: 1px solid #856d0e;
+        }
+
+        .preview-text {
+            overflow: hidden;
+        }
+
+        .preview-text .placeholder {
+            font-style: italic;
+            color: rgba(255,255,255,.5);
+        }
+
+        /* edit */
+        .edit {
+            position: relative;
+            padding: 20px 25px;
+            border: 3px solid #2bbbc1;
+            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAAD1BMVEXt7Ovr6ung393f393g3ttQbHguAAAAWklEQVQoz+2Q2wnAMAwDpQ3cxwIZISN0/6WqFjVOaEbIx3EgIxAGwELReQ/gjGYfk3gOwn5D8korHEFFsAL8DIVHD9wutnDb/u9QuIlIt7Y92wGa+Y71j3HHDXrkEzVxnkPSAAAAAElFTkSuQmCC') #edeceb;
+        }
+
+        .edit-title {
+            position: absolute;
+            left: calc(50% - 90px);
+            top: -22px;
+            display: inline-block;
+            background-color: #ffffff;
+            border: 3px solid #2bbbc1;
+            padding: 10px 25px 7px 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 15px;
+        }
+
+        .edit main {
+            overflow: hidden;
+        }
+
+        .edit main aside {
+            float: left;
+            width: 220px;
+            margin-right: 15px;
+        }
+
+        .edit-name {
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            margin-top: 7px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 3px solid rgba(0,0,0,.15);
+            border-radius: 10px;
+        }
+
+        .avatar-status {
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .avatar--not-selected .avatar-status {
+            color: rgba(0, 0, 0, .5);
+        }
+
+        .edit label {
+            font-size: 16px;
+        }
+
+        .edit input[type="text"], .edit-text textarea {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 14px;
+            margin-top: 7px;
+            padding: 7px 14px;
+            width: 100%;
+            background-color: #ffffff;
+            border: 3px solid rgba(0,0,0,.15);
+            border-radius: 10px;
+            outline: none;
+            transition: border-color .3s;
+        }
+
+        .edit input[type="text"]:focus, .edit-text textarea:focus {
+            border-color: rgba(41,136,121,.41);
+        }
+
+        .edit-text {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .edit-text textarea {
+            min-height: 200px;
+        }
+
+        .edit-text nav {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .edit-format {
+            margin-right: auto;
+        }
+
+        .edit-format .button {
+            min-width: 0;
+            margin-left: 5px;
+        }
+
+        .edit-submit {
+            margin-left: auto;
+        }
+
+        .edit-submit .button {
+            margin-left: 5px;
+        }
+
+        .edit-rating {
+            position: absolute;
+            right: 0;
+            top: 1px;
+            white-space: nowrap;
+            padding-right: 105px;
+        }
+
+        .rate {
+            cursor: default;
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: inline-block;
+            margin-left: 3px;
+        }
+
+        .rate img {
+            cursor: pointer;
+            margin-bottom: -3px;
+        }
     </style>
 
-    <div>
-        asdasd
+    <h1>Add Review</h1>
+
+    <!-- preview -->
+    <div class="preview">
+        <nav>
+            <div class="preview-by">
+                By <span class="preview-name">Your Name</span> <span class="preview-date">March 4, 2017</span>
+            </div>
+        </nav>
+
+        <main>
+            <div class="preview-avatar">
+                <img src="images/empty-avatar.png" alt="">
+            </div>
+
+            <div class="preview-text">
+                <div class="placeholder">Start typing and your review text will appear here...</div>
+            </div>
+        </main>
+    </div>
+
+    <!-- edit -->
+    <div class="edit">
+        <div class="edit-title">edit your review</div>
+
+        <main>
+            <aside>
+                <div class="edit-name">
+                    <label for="name">Enter your name:</label><br>
+                    <input type="text" id="name">
+                </div>
+
+                <div class="edit-avatar">
+                    <label>Choose your avatar:</label>
+
+                    <div class="avatar avatar--not-selected">
+                        <div class="avatar-status">Image not selected</div>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="edit-text">
+                <label for="text">Write your review:</label><br>
+                <textarea id="text"></textarea>
+
+                <nav>
+                    <div class="edit-format">
+                        <button class="button button--regular button--secondary" disabled>Bold</button>
+                        <button class="button button--regular button--secondary" disabled>Emphasize</button>
+                        <button class="button button--regular button--secondary" disabled>Quote</button>
+                    </div>
+
+                    <div class="edit-submit">
+                        <button class="button button--regular button--secondary">Cancel</button>
+                        <button class="button button--regular button--primary" disabled>Add review</button>
+                    </div>
+                </nav>
+
+                <div class="edit-rating">
+                    Rate product:
+
+                    <div class="rate">
+                        <img src="images/star-inactive-grey.svg" width="16" height="16" data-rate="rate-1">
+                        <img src="images/star-inactive-grey.svg" width="16" height="16" data-rate="rate-2">
+                        <img src="images/star-inactive-grey.svg" width="16" height="16" data-rate="rate-3">
+                        <img src="images/star-inactive-grey.svg" width="16" height="16" data-rate="rate-4">
+                        <img src="images/star-inactive-grey.svg" width="16" height="16" data-rate="rate-5">
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 </template>
 

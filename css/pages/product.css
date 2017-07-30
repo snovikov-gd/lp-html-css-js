@@ -159,6 +159,16 @@
     border: 1px solid #fff;
 }
 
+.reviews {
+
+}
+
+.no-review {
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+}
+
 @media screen and (max-width: 800px) {
     .product-image {
         float: none;
