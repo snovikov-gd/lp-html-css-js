@@ -1,15 +1,64 @@
 <template id="image-slider">
     <style>
+        /* container */
         main {
             position: relative;
             background-color: #111;
         }
 
+        /* images */
         .image {
             display: block;
             transition: opacity .2s ease;
         }
 
+        .image-title {
+            pointer-events: none;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+            padding: 20px 0 45px 0;
+            color: #ffffff;
+            font-style: italic;
+            text-align: center;
+            z-index: 250;
+            white-space: nowrap;
+            overflow: hidden;
+            transition: none;
+        }
+
+        .image-title.sliding-to-left,
+        .image-title.sliding-to-right {
+            transition: .5s;
+            opacity: 0;
+        }
+
+        .image-title.sliding-to-left {
+            text-indent: 200%;
+        }
+
+        .image-title.sliding-to-right {
+            text-indent: -200%;
+        }
+
+        ::slotted(img) {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: .5;
+            z-index: 50;
+            transition: opacity 1s ease;
+        }
+
+        ::slotted(img.active) {
+            opacity: 1;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* arrow navigation */
         .arrow {
             cursor: pointer;
             position: absolute;
@@ -37,37 +86,8 @@
             transform: scaleX(-1);
         }
 
-        .image-title {
-            pointer-events: none;
-            position: absolute;
-            width: 100%;
-            left: 0;
-            bottom: 0;
-            padding: 20px 0 45px 0;
-            color: #ffffff;
-            font-style: italic;
-            text-align: center;
-            z-index: 250;
-            white-space: nowrap;
-            overflow: hidden;
-            transition: none;
-        }
-
-        .image-title.sliding-left,
-        .image-title.sliding-right {
-            transition: .5s;
-            opacity: 0;
-        }
-
-        .image-title.sliding-left {
-            text-indent: 200%;
-        }
-
-        .image-title.sliding-right {
-            text-indent: -200%;
-        }
-
-        .zoom-area {
+        /* zoom */
+        .area-to-be-zoomed {
             opacity: 0;
             transition: opacity .3s ease;
             position: absolute;
@@ -81,7 +101,7 @@
             pointer-events: none;
         }
 
-        .zoomed-image-area {
+        .zoomed-area {
             display: none;
             position: absolute;
             left: calc(100% + 10px);
@@ -93,34 +113,21 @@
             background-repeat: no-repeat;
             z-index: 100;
         }
-
-        ::slotted(img) {
-            display: none;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: .5;
-            z-index: 50;
-            transition: opacity 1s ease;
-        }
-
-        ::slotted(img.active) {
-            opacity: 1;
-            position: relative;
-            z-index: 100;
-        }
     </style>
 
     <main>
+        <!-- images -->
+        <slot name="image"></slot>
         <canvas class="image" width="540" height="360"></canvas>
         <div class="image-title">Lorem ipsum dolor.</div>
 
-        <div class="arrow arrow--left"></div>
-        <div class="arrow arrow--right"></div>
+        <!-- arrow navigation -->
+        <div class="arrow arrow--left" data-direction="to-left"></div>
+        <div class="arrow arrow--right" data-direction="to-right"></div>
 
-        <div class="zoom-area"></div>
-        <div class="zoomed-image-area"></div>
-        <slot name="image"></slot>
+        <!-- zoom -->
+        <div class="area-to-be-zoomed"></div>
+        <div class="zoomed-area"></div>
     </main>
 </template>
 

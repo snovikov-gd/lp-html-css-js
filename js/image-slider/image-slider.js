@@ -3,9 +3,6 @@ class ImageSlider extends HTMLElement {
         super();
         const template = document.querySelector('link[rel=import]').import.querySelector('#image-slider').content;
         this.attachShadow({mode: 'open'}).appendChild(template.cloneNode(true));
-
-        this.arrowLeftSelector = 'arrow--left';
-        this.arrowRightSelector = 'arrow--right';
     }
 
     connectedCallback() {
@@ -20,15 +17,10 @@ class ImageSlider extends HTMLElement {
     }
 
     slide(event) {
-        const slideLeft = event.target.classList.contains(this.arrowLeftSelector),
-            slideRight = event.target.classList.contains(this.arrowRightSelector);
+        const direction = event.target.dataset.direction;
 
-        this.watermarkedImage.style.opacity = 0;
-        this.images[this.activeImage].classList.remove('active');
-
-        if (slideLeft && this.activeImage > 0) {
+        if (direction === 'to-left' && this.activeImage > 0) {
             this.activeImage--;
-            this._slideImageTitle(this.images[this.activeImage].alt, 'left');
             this.arrowRight.classList.remove('disabled');
 
             if (this.activeImage === 0) {
@@ -36,9 +28,8 @@ class ImageSlider extends HTMLElement {
             }
         }
 
-        if (slideRight && this.activeImage < this.images.length - 1) {
+        if (direction === 'to-right' && this.activeImage < this.images.length - 1) {
             this.activeImage++;
-            this._slideImageTitle(this.images[this.activeImage].alt, 'right');
             this.arrowLeft.classList.remove('disabled');
 
             if (this.activeImage === this.images.length - 1) {
@@ -46,12 +37,14 @@ class ImageSlider extends HTMLElement {
             }
         }
 
+        this.watermarkedImage.style.opacity = 0;
+        this._slideImageTitle(this.images[this.activeImage].alt, direction);
         this._watermarkImage();
+
+        // pretty dump fade effect
         setTimeout(() => {
             this.watermarkedImage.style.opacity = 1;
         }, 200);
-
-        this.images[this.activeImage].classList.add('active');
     }
 
     _setupElementReferences() {
@@ -63,11 +56,11 @@ class ImageSlider extends HTMLElement {
         this.watermarkedImage = s.querySelector('.image');
         this.WATERMARKED_IMAGE_SOURCE = './images/watermark.png';
 
-        this.arrowLeft = s.querySelector(`.${this.arrowLeftSelector}`);
-        this.arrowRight = s.querySelector(`.${this.arrowRightSelector}`);
+        this.arrowLeft = s.querySelector('.arrow--left');
+        this.arrowRight = s.querySelector('.arrow--right');
 
-        this.zoomArea = s.querySelector('.zoom-area');
-        this.zoomedImageArea = s.querySelector('.zoomed-image-area');
+        this.areaToBeZoomed = s.querySelector('.area-to-be-zoomed');
+        this.zoomedArea = s.querySelector('.zoomed-area');
     }
 
     _initializeImages() {
@@ -83,11 +76,13 @@ class ImageSlider extends HTMLElement {
     _initializeArrows() {
         this.arrowLeft.classList.add('disabled');
 
-        const arrows = [this.arrowLeft, this.arrowRight];
+        this.arrowLeft.addEventListener('click', this.slide.bind(this));
+        this.arrowRight.addEventListener('click', this.slide.bind(this));
+    }
 
-        Object.keys(arrows).forEach(arrow => {
-            arrows[arrow].addEventListener('click', this.slide.bind(this));
-        });
+    _initializeZoom() {
+        this._setZoomedAreaSize();
+        this.container.addEventListener('mousemove', this.zoom.bind(this));
     }
 
     _setImageTitle(title) {
@@ -103,52 +98,8 @@ class ImageSlider extends HTMLElement {
         }, 500)
     }
 
-    _initializeZoom() {
-        this._setZoomedImageAreaSize();
-
-        this.container.addEventListener('mousemove', e => {
-            const leftBorder = this.container.clientWidth / 4 / 2,
-                topBorder = this.container.clientHeight / 2 / 2,
-                rightBorder = this.container.clientWidth - leftBorder,
-                bottomBorder = this.container.clientHeight - topBorder;
-
-            if (e.layerX > leftBorder && e.layerY > topBorder && e.layerX < rightBorder && e.layerY < bottomBorder) {
-                this.zoomedImageArea.style.backgroundImage = `url("${this.images[this.activeImage].src}")`;
-
-                this.zoomedImageArea.style.display = 'block';
-                this.zoomArea.style.opacity = '1';
-
-                this._setZoomAreaPosition(e.layerX, e.layerY);
-                this._updateZoomedImagePosition(e.layerX, e.layerY, leftBorder, topBorder);
-            } else {
-                this.zoomedImageArea.style.display = 'none';
-                this.zoomArea.style.opacity = '0';
-            }
-        });
-    }
-
-    _setZoomedImageAreaSize() {
-        const activeImage = this.images[this.activeImage];
-
-        this.zoomedImageArea.style.width = activeImage.naturalWidth / 4;
-        this.zoomedImageArea.style.height = activeImage.naturalHeight / 2;
-    }
-
-    _setZoomAreaPosition(offsetLeft, offsetTop) {
-        this.zoomArea.style.left = `${offsetLeft - this.zoomArea.clientWidth / 2}px`;
-        this.zoomArea.style.top = `${offsetTop - this.zoomArea.clientHeight / 2}px`;
-    }
-
-    _updateZoomedImagePosition(offsetLeft, offsetTop, leftBorder, topBorder) {
-        const ratio = this.images[this.activeImage].naturalWidth / this.watermarkedImage.width;
-
-        this.zoomedImageArea.style.backgroundPositionX = `-${(offsetLeft - leftBorder) * ratio}px`;
-        this.zoomedImageArea.style.backgroundPositionY = `-${(offsetTop - topBorder) * ratio}px`;
-    }
-
     _watermarkImage() {
-        let originalImage = this.images[this.activeImage],
-            image = new Image(),
+        let image = new Image(),
             imageWidth = this.container.clientWidth,
             imageHeight = this.container.clientHeight;
 
@@ -157,7 +108,6 @@ class ImageSlider extends HTMLElement {
 
             watermark.onload = () => {
                 let ctx = this.watermarkedImage.getContext('2d');
-
                 ctx.drawImage(image, 0, 0, imageWidth, imageHeight);
                 ctx.drawImage(watermark, 370, 10);
             };
@@ -165,7 +115,45 @@ class ImageSlider extends HTMLElement {
             watermark.src = this.WATERMARKED_IMAGE_SOURCE;
         };
 
-        image.src = originalImage.src;
+        image.src = this.images[this.activeImage].src;
+    }
+
+    zoom(e) {
+        // controls the borders where area to be zoomed must appear
+        // and updates image position inside zoomed area
+        const leftBorder = this.container.clientWidth / 4 / 2,
+              topBorder = this.container.clientHeight / 2 / 2,
+              rightBorder = this.container.clientWidth - leftBorder,
+              bottomBorder = this.container.clientHeight - topBorder;
+
+        if (e.layerX > leftBorder && e.layerY > topBorder && e.layerX < rightBorder && e.layerY < bottomBorder) {
+            this.zoomedArea.style.backgroundImage = `url("${this.images[this.activeImage].src}")`;
+
+            this.zoomedArea.style.display = 'block';
+            this.areaToBeZoomed.style.opacity = '1';
+
+            this._setAreaToBeZoomedPosition(e.layerX, e.layerY);
+            this._updateZoomedAreaPosition(e.layerX, e.layerY, leftBorder, topBorder);
+        } else {
+            this.zoomedArea.style.display = 'none';
+            this.areaToBeZoomed.style.opacity = '0';
+        }
+    }
+
+    _setZoomedAreaSize() {
+        this.zoomedArea.style.setProperty('width', `${this.images[this.activeImage].naturalWidth / 4}px`);
+        this.zoomedArea.style.setProperty('height', `${this.images[this.activeImage].naturalHeight / 2}px`);
+    }
+
+    _setAreaToBeZoomedPosition(offsetLeft, offsetTop) {
+        this.areaToBeZoomed.style.left = `${offsetLeft - this.areaToBeZoomed.clientWidth / 2}px`;
+        this.areaToBeZoomed.style.top = `${offsetTop - this.areaToBeZoomed.clientHeight / 2}px`;
+    }
+
+    _updateZoomedAreaPosition(offsetLeft, offsetTop, leftBorder, topBorder) {
+        const ratio = this.images[this.activeImage].naturalWidth / this.watermarkedImage.width;
+        this.zoomedArea.style.backgroundPositionX = `-${(offsetLeft - leftBorder) * ratio}px`;
+        this.zoomedArea.style.backgroundPositionY = `-${(offsetTop - topBorder) * ratio}px`;
     }
 }
 
