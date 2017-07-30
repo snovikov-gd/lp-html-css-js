@@ -1,7 +1,7 @@
 class ImageSlider extends HTMLElement {
     constructor() {
         super();
-        const template = document.querySelector('link[rel=import]').import.querySelector('#image-slider').content;
+        const template = document.querySelector('link[rel="import"][href*="image-slider"]').import.querySelector('#image-slider').content;
         this.attachShadow({mode: 'open'}).appendChild(template.cloneNode(true));
     }
 
