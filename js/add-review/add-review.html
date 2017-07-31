@@ -25,6 +25,7 @@
         .preview nav {
             display: flex;
             justify-content: space-between;
+            height: 20px;
             margin-bottom: 15px;
         }
 
@@ -35,6 +36,14 @@
         .preview-name {
             font-style: italic;
             color: #ffcc00;
+        }
+
+        .preview-rating {
+            margin-left: auto;
+        }
+
+        .preview-rate {
+            display: none;
         }
 
         .preview main {
@@ -49,7 +58,49 @@
         }
 
         .preview-text {
+            font-family: 'PT Sans', sans-serif;
+            font-size: 14px;
+            padding: 0;
+            margin: 0;
             overflow: hidden;
+            white-space: pre-wrap;
+        }
+
+        .preview-text strong {
+            color: #ffcc00;
+        }
+
+        .preview-text em {
+            color: #ffcc00;
+        }
+
+        .preview-text blockquote {
+            margin: 20px 0 5px 0;
+            padding: 0;
+            font-size: 24px;
+            font-style: italic;
+        }
+
+        .preview-text blockquote::before,
+        .preview-text blockquote::after {
+            content: '';
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            width: 16px;
+            height: 12px;
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAMCAYAAABr5z2BAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MUM2RTZGQjc2Q0I3MTFFNzg5MUY5QjU2QkYwQjJERjIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MUM2RTZGQjg2Q0I3MTFFNzg5MUY5QjU2QkYwQjJERjIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxQzZFNkZCNTZDQjcxMUU3ODkxRjlCNTZCRjBCMkRGMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoxQzZFNkZCNjZDQjcxMUU3ODkxRjlCNTZCRjBCMkRGMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjlN0CgAAAEhSURBVHjaYvx/lgEZqANxFRBLAXEQEH9mwATBQJwPxNuBuJ0RyYAIIJ4IxGJQfgMQtwDxXyifA4j7gTgDyn8PxG5MUI4XEC9A0gwCnlBNIMAMxNORNIOAIBDbggyQgdrMjiS5EeqFr1B+GBAnIMn/BuJsIJ7JAiRigFgFSfIWECdCnQgC3EBchhYOM4F4GogBcoEfmuRrIJZA4msDsQGaGpDhQjADZNAkrYH4CBCnQflaWGKiFoh3g+SY0PwOAyDTe4FYBIiFGbADI1CUMyFFEzrgAWJFIH7DgBtYgQy4jkcBKLRP4pH/ADKgHYi/Y5EEpbQbQHwTGs3YwDTmhnSGe0DGCWjC4IfGwiIgLgLiT1CFB6BsUJiAov4yNCDnAQQYAMq5NLPCyqwIAAAAAElFTkSuQmCC") no-repeat;
+        }
+
+        .preview-text blockquote::before {
+            margin-right: 5px;
+        }
+
+        .preview-text blockquote::after {
+            bottom: -18px;
+            margin-left: 5px;
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
         }
 
         .preview-text .placeholder {
@@ -191,7 +242,49 @@
     <div class="preview">
         <nav>
             <div class="preview-by">
-                By <span class="preview-name">Your Name</span> <span class="preview-date">March 4, 2017</span>
+                By <span class="preview-name">Your Name</span> <span class="preview-date"></span>
+            </div>
+
+            <div class="preview-rating">
+                <div class="preview-rate preview-rate-1">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                </div>
+
+                <div class="preview-rate preview-rate-2">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                </div>
+
+                <div class="preview-rate preview-rate-3">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                </div>
+
+                <div class="preview-rate preview-rate-4">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-inactive-grey.svg" width="16" height="16">
+                </div>
+
+                <div class="preview-rate preview-rate-5">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                    <img src="images/star-active.svg" width="16" height="16">
+                </div>
             </div>
         </nav>
 
@@ -200,9 +293,7 @@
                 <img src="images/empty-avatar.png" alt="">
             </div>
 
-            <div class="preview-text">
-                <div class="placeholder">Start typing and your review text will appear here...</div>
-            </div>
+            <pre class="preview-text"><div class="placeholder">Start typing and your review text will appear here...</div></pre>
         </main>
     </div>
 
@@ -232,14 +323,14 @@
 
                 <nav>
                     <div class="edit-format">
-                        <button class="button button--regular button--secondary" disabled>Bold</button>
-                        <button class="button button--regular button--secondary" disabled>Emphasize</button>
-                        <button class="button button--regular button--secondary" disabled>Quote</button>
+                        <button class="button button--regular button--secondary" id="bold">Bold</button>
+                        <button class="button button--regular button--secondary" id="emphasize">Emphasize</button>
+                        <button class="button button--regular button--secondary" id="quote">Quote</button>
                     </div>
 
                     <div class="edit-submit">
-                        <button class="button button--regular button--secondary">Cancel</button>
-                        <button class="button button--regular button--primary" disabled>Add review</button>
+                        <button class="button button--regular button--secondary" id="cancel">Cancel</button>
+                        <button class="button button--regular button--primary" id="submit" disabled>Add review</button>
                     </div>
                 </nav>
 

@@ -9,6 +9,7 @@
     text-decoration: none;
     border-radius: .5rem;
     text-align: center;
+    transition: opacity .3s;
 }
 
 .button:disabled {
