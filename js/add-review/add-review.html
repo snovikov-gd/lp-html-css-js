@@ -20,6 +20,7 @@
             background-color: rgba(0, 0, 0, .7);
             font-size: 14px;
             color: #ffffff;
+            min-height: 160px;
         }
 
         .preview nav {
@@ -143,9 +144,12 @@
             margin-bottom: 20px;
         }
 
+        /* select avatar input */
         .avatar {
+            cursor: pointer;
+            position: relative;
             margin-top: 7px;
-            padding: 20px;
+            padding: 40px 20px;
             background-color: #ffffff;
             border: 3px solid rgba(0,0,0,.15);
             border-radius: 10px;
@@ -156,14 +160,45 @@
             font-size: 14px;
         }
 
+        .avatar .avatar-status--selected {
+            display: block;
+        }
+
+        .avatar .avatar-status--not-selected {
+            display: none;
+        }
+
         .avatar--not-selected .avatar-status {
+            padding-left: 10px;
             color: rgba(0, 0, 0, .5);
+        }
+
+        .avatar--not-selected .avatar-status--selected {
+            display: none;
+        }
+
+        .avatar--not-selected .avatar-status--not-selected {
+            display: block;
+        }
+
+        .avatar-image {
+            position: absolute;
+            right: 9px;
+            top: calc(50% - 39px);
+            width: 78px;
+            height: 78px;
+            border-radius: 10px;
+        }
+
+        #input-avatar {
+            visibility: hidden;
         }
 
         .edit label {
             font-size: 16px;
         }
 
+        /* review text */
         .edit input[type="text"], .edit-text textarea {
             font-family: 'PT Sans', sans-serif;
             font-size: 14px;
@@ -290,7 +325,7 @@
 
         <main>
             <div class="preview-avatar">
-                <img src="images/empty-avatar.png" alt="">
+                <img src="images/empty-avatar.png" class="preview-avatar-image" alt="">
             </div>
 
             <pre class="preview-text"><div class="placeholder">Start typing and your review text will appear here...</div></pre>
@@ -312,8 +347,12 @@
                     <label>Choose your avatar:</label>
 
                     <div class="avatar avatar--not-selected">
-                        <div class="avatar-status">Image not selected</div>
+                        <div class="avatar-status avatar-status--selected">Image selected</div>
+                        <div class="avatar-status avatar-status--not-selected">Select image</div>
+                        <img src="images/select-avatar.png" alt="" class="avatar-image">
                     </div>
+
+                    <input type="file" id="input-avatar">
                 </div>
             </aside>
 

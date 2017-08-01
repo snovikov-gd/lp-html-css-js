@@ -15,6 +15,7 @@ class AddReview extends HTMLElement {
         this._initDate();
         this._initText();
         this._initRating();
+        this._initAvatarUpload();
     }
 
     static submit() {
@@ -103,6 +104,7 @@ class AddReview extends HTMLElement {
                 // update rating that's shown in edit area
                 if (isInactive) {
                     for (let i = 1; i < number+1; i++) {
+                        console.log(self.rating.edit);
                         self.rating.edit.querySelector(`img[data-rate="rate-${i}"]`).src = 'images/star-active.svg';
                     }
                 } else {
@@ -121,6 +123,43 @@ class AddReview extends HTMLElement {
                 self.rating.preview.querySelector(`.preview-rate-${number}`).style.display = 'block';
             });
         })
+    }
+
+    _initAvatarUpload() {
+        this.avatar = {
+            preview: this.s.querySelector('.preview-avatar-image'),
+            edit: {
+                container: this.s.querySelector('.avatar'),
+                input: this.s.querySelector('#input-avatar'),
+                uploadPreview: this.s.querySelector('.avatar-image')
+            }
+        };
+
+        const self = this;
+
+        this.avatar.edit.container.addEventListener('click', function () {
+            const event = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+
+            self.avatar.edit.input.dispatchEvent(event);
+        });
+
+        this.avatar.edit.input.addEventListener('change', function () {
+            if (self.avatar.edit.input.files && self.avatar.edit.input.files[0]) {
+                let reader = new FileReader();
+
+                reader.onload = function (e) {
+                    self.avatar.edit.container.classList.remove('avatar--not-selected');
+                    self.avatar.edit.uploadPreview.setAttribute('src', e.target.result);
+                    self.avatar.preview.setAttribute('src', e.target.result);
+                };
+
+                reader.readAsDataURL(self.avatar.edit.input.files[0]);
+            }
+        });
     }
 
     _updateSubmitButtonState(self) {
