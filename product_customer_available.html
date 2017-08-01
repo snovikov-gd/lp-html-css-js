@@ -79,6 +79,11 @@
             </div>
 
             <div class="reviews">
+                <div class="be-first">
+                    There is no user reviews for now.<br>
+                    Would you like to <span class="share-your-thoughts">share your thoughts with other customers</span>?
+                </div>
+
                 <div class="no-review">
                     There is no user reviews for now.<br>
                     Share your thoughts with other customers:
@@ -93,5 +98,13 @@
         Copyright "<a href="">Demo Shop</a>", 2017
     </footer>
 </main>
+
+<script>
+    document.addEventListener('click', e => {
+        if (e.target.className === 'share-your-thoughts' || e.action === 'CANCEL') {
+            document.querySelector('.reviews').classList.toggle('reviews--active');
+        }
+    });
+</script>
 </body>
 </html>

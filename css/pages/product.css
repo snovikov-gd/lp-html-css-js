@@ -159,14 +159,31 @@
     border: 1px solid #fff;
 }
 
-.reviews {
-
+.reviews .no-review,
+.reviews add-review {
+    display: none;
 }
 
+.reviews--active .be-first {
+    display: none;
+}
+
+.reviews--active .no-review,
+.reviews--active add-review {
+    display: block;
+}
+
+.be-first,
 .no-review {
     text-align: center;
     color: #ffffff;
     font-size: 16px;
+}
+
+.share-your-thoughts {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #ffcc00;
 }
 
 @media screen and (max-width: 800px) {

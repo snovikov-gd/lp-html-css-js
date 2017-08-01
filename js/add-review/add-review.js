@@ -23,7 +23,10 @@ class AddReview extends HTMLElement {
     }
 
     static cancel() {
-        alert('Cancelled');
+        let e = document.createEvent('HTMLEvents');
+        e.initEvent('click', false, true);
+        e.action = 'CANCEL';
+        document.dispatchEvent(e);
     }
 
     _initName() {
